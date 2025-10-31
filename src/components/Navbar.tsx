@@ -13,10 +13,18 @@ const Navbar: React.FC = () => {
     { name: 'Sobre Nosotros', href: '/#sobre-nosotros' },
     { name: 'Servicios', href: '/#servicios' },
     { name: 'Eventos', href: '/#eventos' },
+    { name: 'Instructores', href: '/instructores' },
     { name: 'Contacto', href: '/contacto' },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    const { pathname, hash } = location;
+    if (path.startsWith('/#')) {
+      const targetHash = path.slice(1); // '#sobre-nosotros', etc.
+      return pathname === '/' && hash === targetHash;
+    }
+    return pathname === path;
+  };
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">

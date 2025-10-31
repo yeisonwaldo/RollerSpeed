@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '../components';
-import { LogoTitulo, ImagenEscuelas } from '../assets/images';
+import { LogoTitulo, ImagenEscuelas, IconoMision, IconoVision, IconoValores, LogoBienvenido, Imagen1Servicio, Imagen2Servicio, Imagen3Servicio } from '../assets/images';
 
 const Inicio: React.FC = () => {
   return (
@@ -18,13 +18,10 @@ const Inicio: React.FC = () => {
               className="space-y-8"
             >
               <div className="flex flex-col items-start space-y-4">
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-                  Bienvenidos a
-                </h1>
                 <img 
-                  src={LogoTitulo} 
+                  src={LogoBienvenido} 
                   alt="Roller Speed" 
-                  className="h-20 md:h-24 w-auto"
+                  className="h-32 md:h-48 w-auto"
                 />
               </div>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
@@ -32,12 +29,12 @@ const Inicio: React.FC = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/login">
-                  <Button variant="primary" size="lg" className="w-full sm:w-auto bg-teal-600 hover:bg-teal-700">
+                  <Button variant="primary" size="lg" className="w-full sm:w-auto bg-[#019AA9] hover:bg-[#018a95] text-white">
                     Inicia Sesión
                   </Button>
                 </Link>
                 <Link to="/registro">
-                  <Button variant="secondary" size="lg" className="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-gray-900">
+                  <Button variant="secondary" size="lg" className="w-full sm:w-auto bg-[#F8B305] hover:bg-[#e6a004] text-gray-900">
                     Inscríbete ahora
                   </Button>
                 </Link>
@@ -90,11 +87,8 @@ const Inicio: React.FC = () => {
             >
               <div className="grid grid-cols-1 gap-6">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-yellow-400 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                      <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd"/>
-                    </svg>
+                  <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                    <img src={IconoVision} alt="Visión" className="w-12 h-12" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Visión</h3>
@@ -105,10 +99,8 @@ const Inicio: React.FC = () => {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-orange-400 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                    </svg>
+                  <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                    <img src={IconoMision} alt="Misión" className="w-12 h-12" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Misión</h3>
@@ -119,10 +111,8 @@ const Inicio: React.FC = () => {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-orange-500 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
-                    </svg>
+                  <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                    <img src={IconoValores} alt="Valores" className="w-12 h-12" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Valores</h3>
@@ -153,7 +143,7 @@ const Inicio: React.FC = () => {
               Nuestros Servicios
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Ofrecemos una amplia gama de programas de entrenamiento adaptados a todas las edades y niveles
+              En Roller Speed ofrecemos programas de patinaje para todas las edades y niveles, combinando diversión, técnica y disciplina para impulsar el desarrollo deportivo de cada alumno.
             </p>
           </motion.div>
 
@@ -165,7 +155,13 @@ const Inicio: React.FC = () => {
               viewport={{ once: true }}
               className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={Imagen1Servicio} 
+                  alt="Clases para Niños y Jóvenes" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Clases para Niños y Jóvenes</h3>
                 <p className="text-gray-600 mb-4">
@@ -186,7 +182,13 @@ const Inicio: React.FC = () => {
               viewport={{ once: true }}
               className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={Imagen2Servicio} 
+                  alt="Entrenamiento Avanzado" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Entrenamiento Avanzado</h3>
                 <p className="text-gray-600 mb-4">
@@ -207,7 +209,13 @@ const Inicio: React.FC = () => {
               viewport={{ once: true }}
               className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="h-48 bg-gradient-to-br from-purple-400 to-purple-600"></div>
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={Imagen3Servicio} 
+                  alt="Preparación para Competencias" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Preparación para Competencias</h3>
                 <p className="text-gray-600 mb-4">

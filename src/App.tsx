@@ -1,14 +1,30 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar, Footer } from './components';
 import { 
   Inicio, 
+  Instructores,
   Contacto, 
   Login, 
   Registro 
 } from './pages';
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Desplazar suavemente a la sección si hay hash en la URL
+    if (location.hash) {
+      // Pequeño retraso para asegurar que el DOM esté listo
+      setTimeout(() => {
+        const el = document.querySelector(location.hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 0);
+    }
+  }, [location]);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Routes>
@@ -18,6 +34,15 @@ function App() {
             <Navbar />
             <main className="flex-grow">
               <Inicio />
+            </main>
+            <Footer />
+          </>
+        } />
+        <Route path="/instructores" element={
+          <>
+            <Navbar />
+            <main className="flex-grow">
+              <Instructores />
             </main>
             <Footer />
           </>
