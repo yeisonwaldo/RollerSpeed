@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
               <img 
                 src={LogoTitulo} 
                 alt="Roller Speed Título" 
-                className="h-12 w-auto"
+                className="h-18 w-auto"
               />
             </div>
             <p className="text-gray-300 mb-4">

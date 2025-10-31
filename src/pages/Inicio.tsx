@@ -268,7 +268,7 @@ const Inicio: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">Campeonato Regional de Velocidad</h3>
-                  <p className="text-sm text-gray-500">15 de Febrero, 2024</p>
+                  <p className="text-sm text-gray-500">15 de Noviembre, 2025</p>
                 </div>
               </div>
               <p className="text-gray-600 mb-4">
@@ -295,7 +295,7 @@ const Inicio: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">Jornada de Puertas Abiertas</h3>
-                  <p className="text-sm text-gray-500">22 de Febrero, 2024</p>
+                  <p className="text-sm text-gray-500">22 de Noviembre, 2025</p>
                 </div>
               </div>
               <p className="text-gray-600 mb-4">

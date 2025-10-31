@@ -38,7 +38,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-blue via-blue-700 to-blue-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#019AA9] via-[#017a85] to-[#015a60] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <motion.div
@@ -48,7 +48,7 @@ const Login: React.FC = () => {
           className="text-center"
         >
           {/* Logo */}
-          <div className="mx-auto h-16 w-16 bg-primary-yellow rounded-full flex items-center justify-center mb-6">
+          <div className="mx-auto h-16 w-16 bg-[#F8B305] rounded-full flex items-center justify-center mb-6">
             <svg className="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd"/>
             </svg>
@@ -84,7 +84,7 @@ const Login: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors"
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors"
                   placeholder="tu@email.com"
                 />
               </div>
@@ -107,7 +107,7 @@ const Login: React.FC = () => {
                   required
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors"
+                  className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors"
                   placeholder="Tu contraseña"
                 />
                 <button
@@ -131,7 +131,7 @@ const Login: React.FC = () => {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 text-primary-blue focus:ring-primary-blue border-gray-300 rounded"
+                  className="h-4 w-4 text-[#019AA9] focus:ring-[#019AA9] border-gray-300 rounded"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
                   Recordarme
@@ -139,7 +139,7 @@ const Login: React.FC = () => {
               </div>
               <Link
                 to="/forgot-password"
-                className="text-sm text-primary-blue hover:text-blue-700 font-medium"
+                className="text-sm text-[#019AA9] hover:text-[#017a85] font-medium"
               >
                 ¿Olvidaste tu contraseña?
               </Link>
@@ -208,7 +208,7 @@ const Login: React.FC = () => {
               ¿No tienes una cuenta?{' '}
               <Link
                 to="/registro"
-                className="font-medium text-primary-blue hover:text-blue-700"
+                className="font-medium text-[#019AA9] hover:text-[#017a85]"
               >
                 Regístrate aquí
               </Link>

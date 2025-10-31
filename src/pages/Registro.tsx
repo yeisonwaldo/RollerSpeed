@@ -84,7 +84,7 @@ const Registro: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-blue via-blue-700 to-blue-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#019AA9] via-[#017a85] to-[#015a60] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <motion.div
@@ -94,7 +94,7 @@ const Registro: React.FC = () => {
           className="text-center mb-8"
         >
           {/* Logo */}
-          <div className="mx-auto h-16 w-16 bg-primary-yellow rounded-full flex items-center justify-center mb-6">
+          <div className="mx-auto h-16 w-16 bg-[#F8B305] rounded-full flex items-center justify-center mb-6">
             <svg className="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
               <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
             </svg>
@@ -116,7 +116,7 @@ const Registro: React.FC = () => {
             {/* Personal Information */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                <UserIcon className="w-5 h-5 text-primary-blue mr-2" />
+                <UserIcon className="w-5 h-5 text-[#019AA9] mr-2" />
                 Información Personal
               </h3>
               
@@ -132,7 +132,7 @@ const Registro: React.FC = () => {
                     required
                     value={formData.nombre}
                     onChange={handleInputChange}
-                    className={`block w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors ${
+                    className={`block w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors ${
                       errors.nombre ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Tu nombre"
@@ -151,7 +151,7 @@ const Registro: React.FC = () => {
                     required
                     value={formData.apellido}
                     onChange={handleInputChange}
-                    className={`block w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors ${
+                    className={`block w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors ${
                       errors.apellido ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Tu apellido"
@@ -177,7 +177,7 @@ const Registro: React.FC = () => {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className={`block w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors ${
+                      className={`block w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors ${
                         errors.email ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="tu@email.com"
@@ -200,7 +200,7 @@ const Registro: React.FC = () => {
                       type="tel"
                       value={formData.telefono}
                       onChange={handleInputChange}
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors"
+                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors"
                       placeholder="+57 (1) 234-5678"
                     />
                   </div>
@@ -222,7 +222,7 @@ const Registro: React.FC = () => {
                       type="date"
                       value={formData.fechaNacimiento}
                       onChange={handleInputChange}
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors"
+                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors"
                     />
                   </div>
                 </div>
@@ -236,7 +236,7 @@ const Registro: React.FC = () => {
                     name="nivelExperiencia"
                     value={formData.nivelExperiencia}
                     onChange={handleInputChange}
-                    className="block w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors"
+                    className="block w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors"
                   >
                     <option value="">Selecciona tu nivel</option>
                     <option value="principiante">Principiante</option>
@@ -251,7 +251,7 @@ const Registro: React.FC = () => {
             {/* Security */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                <LockClosedIcon className="w-5 h-5 text-primary-blue mr-2" />
+                <LockClosedIcon className="w-5 h-5 text-[#019AA9] mr-2" />
                 Seguridad
               </h3>
               
@@ -269,9 +269,9 @@ const Registro: React.FC = () => {
                       required
                       value={formData.password}
                       onChange={handleInputChange}
-                      className={`block w-full pr-10 pl-3 py-3 border rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors ${
-                        errors.password ? 'border-red-500' : 'border-gray-300'
-                      }`}
+                      className={`block w-full pr-10 pl-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors ${
+                         errors.password ? 'border-red-500' : 'border-gray-300'
+                       }`}
                       placeholder="Mínimo 6 caracteres"
                     />
                     <button
@@ -302,9 +302,9 @@ const Registro: React.FC = () => {
                       required
                       value={formData.confirmPassword}
                       onChange={handleInputChange}
-                      className={`block w-full pr-10 pl-3 py-3 border rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors ${
-                        errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
-                      }`}
+                      className={`block w-full pr-10 pl-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors ${
+                         errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
+                       }`}
                       placeholder="Repite tu contraseña"
                     />
                     <button
@@ -333,17 +333,17 @@ const Registro: React.FC = () => {
                   type="checkbox"
                   checked={formData.aceptaTerminos}
                   onChange={handleInputChange}
-                  className={`h-4 w-4 text-primary-blue focus:ring-primary-blue border-gray-300 rounded mt-1 ${
+                  className={`h-4 w-4 text-[#019AA9] focus:ring-[#019AA9] border-gray-300 rounded mt-1 ${
                     errors.aceptaTerminos ? 'border-red-500' : ''
                   }`}
                 />
                 <label htmlFor="aceptaTerminos" className="ml-3 block text-sm text-gray-700">
                   Acepto los{' '}
-                  <Link to="/terminos" className="text-primary-blue hover:text-blue-700 font-medium">
+                  <Link to="/terminos" className="text-[#019AA9] hover:text-[#017a85] font-medium">
                     términos y condiciones
                   </Link>{' '}
                   y la{' '}
-                  <Link to="/privacidad" className="text-primary-blue hover:text-blue-700 font-medium">
+                  <Link to="/privacidad" className="text-[#019AA9] hover:text-[#017a85] font-medium">
                     política de privacidad
                   </Link>
                   *
@@ -358,7 +358,7 @@ const Registro: React.FC = () => {
                   type="checkbox"
                   checked={formData.recibirNoticias}
                   onChange={handleInputChange}
-                  className="h-4 w-4 text-primary-blue focus:ring-primary-blue border-gray-300 rounded mt-1"
+                  className="h-4 w-4 text-[#019AA9] focus:ring-[#019AA9] border-gray-300 rounded mt-1"
                 />
                 <label htmlFor="recibirNoticias" className="ml-3 block text-sm text-gray-700">
                   Quiero recibir noticias, eventos y promociones especiales de ROLLER SPEED
@@ -391,7 +391,7 @@ const Registro: React.FC = () => {
               ¿Ya tienes una cuenta?{' '}
               <Link
                 to="/login"
-                className="font-medium text-primary-blue hover:text-blue-700"
+                className="font-medium text-[#019AA9] hover:text-[#017a85]"
               >
                 Inicia sesión aquí
               </Link>
