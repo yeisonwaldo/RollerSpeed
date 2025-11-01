@@ -16,7 +16,7 @@ La plataforma está construida con tecnologías modernas de React y TypeScript, 
 - **Administradores**: Control total del sistema, usuarios y finanzas
 
 ### 🎯 Funcionalidades Clave
-- **Gestión de Usuarios**: Registro, autenticación y perfiles personalizados
+- **Gestión de Usuarios**: Registro, autenticación y perfiles personalizados.
 - **Administración de Clases**: Creación, edición y seguimiento de clases
 - **Sistema de Horarios**: Visualización y gestión de horarios personalizados
 - **Control de Pagos**: Seguimiento de pagos y estados financieros
