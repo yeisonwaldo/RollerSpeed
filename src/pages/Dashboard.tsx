@@ -17,7 +17,7 @@ const Dashboard: React.FC = () => {
 
   // Redirigir al dashboard específico según el rol del usuario
   const renderDashboardByRole = () => {
-    switch (user.rol) {
+    switch (user.role) {
       case 'estudiante':
         return <DashboardEstudiante />;
       case 'instructor':

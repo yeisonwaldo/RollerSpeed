@@ -6,6 +6,7 @@ import MiPerfilModal from '../components/modals/MiPerfilModal';
 import MisClasesModal from '../components/modals/MisClasesModal';
 import EstudiantesModal from '../components/modals/EstudiantesModal';
 import ReportesModal from '../components/modals/ReportesModal';
+import NuevaClaseModal from '../components/modals/NuevaClaseModal';
 import Notificaciones from './student/Notificaciones';
 import { 
   UserIcon, 
@@ -15,280 +16,452 @@ import {
   AcademicCapIcon,
   ClockIcon,
   CalendarIcon,
-  DocumentTextIcon
+  DocumentTextIcon,
+  StarIcon,
+  TrophyIcon,
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  PlusIcon,
+  EyeIcon
 } from '@heroicons/react/24/outline';
 
 const DashboardInstructor: React.FC = () => {
   const { user } = useAuth();
-  
-  // Estados para controlar los modales
-  const [showNotificaciones, setShowNotificaciones] = useState(false);
-  const [showMiPerfilModal, setShowMiPerfilModal] = useState(false);
-  const [showMisClasesModal, setShowMisClasesModal] = useState(false);
-  const [showEstudiantesModal, setShowEstudiantesModal] = useState(false);
-  const [showReportesModal, setShowReportesModal] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showMiPerfil, setShowMiPerfil] = useState(false);
+  const [showMisClases, setShowMisClases] = useState(false);
+  const [showEstudiantes, setShowEstudiantes] = useState(false);
+  const [showReportes, setShowReportes] = useState(false);
+  const [showNuevaClase, setShowNuevaClase] = useState(false);
 
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Cargando...</p>
-      </div>
-    );
-  }
-
-  const handleMiPerfil = () => {
-    setShowMiPerfilModal(true);
+  // Datos simulados específicos para instructor
+  const instructorStats = {
+    totalEstudiantes: 32,
+    clasesHoy: 4,
+    horasSemanales: 28,
+    calificacionPromedio: 4.8,
+    clasesCompletadas: 156,
+    estudiantesActivos: 28,
+    ingresosMes: 1850000
   };
 
-  const handleMisClases = () => {
-    setShowMisClasesModal(true);
-  };
-
-  const handleEstudiantes = () => {
-    setShowEstudiantesModal(true);
-  };
-
-  const handleReportes = () => {
-    setShowReportesModal(true);
-  };
-
-  const instructorCards = [
+  const clasesHoy = [
     {
-      title: 'Mi Perfil',
-      description: 'Ver y editar información personal',
-      icon: UserIcon,
-      color: 'bg-blue-500',
-      action: handleMiPerfil
+      id: 1,
+      nombre: 'Patinaje Básico - Grupo A',
+      hora: '08:00 - 09:30',
+      estudiantes: 8,
+      nivel: 'Principiante',
+      estado: 'programada',
+      salon: 'Pista Principal'
     },
     {
-      title: 'Mis Clases',
-      description: 'Gestionar clases y horarios',
-      icon: AcademicCapIcon,
-      color: 'bg-green-500',
-      action: handleMisClases
+      id: 2,
+      nombre: 'Técnicas Avanzadas',
+      hora: '10:00 - 11:30',
+      estudiantes: 6,
+      nivel: 'Avanzado',
+      estado: 'en-curso',
+      salon: 'Pista Secundaria'
     },
     {
-      title: 'Estudiantes',
-      description: 'Gestionar estudiantes asignados',
-      icon: UsersIcon,
-      color: 'bg-yellow-500',
-      action: handleEstudiantes
+      id: 3,
+      nombre: 'Patinaje Artístico',
+      hora: '15:00 - 16:30',
+      estudiantes: 5,
+      nivel: 'Intermedio',
+      estado: 'programada',
+      salon: 'Pista Principal'
     },
     {
-      title: 'Reportes',
-      description: 'Ver estadísticas y reportes',
-      icon: ChartBarIcon,
-      color: 'bg-red-500',
-      action: handleReportes
+      id: 4,
+      nombre: 'Entrenamiento Personal',
+      hora: '17:00 - 18:00',
+      estudiantes: 1,
+      nivel: 'Personalizado',
+      estado: 'programada',
+      salon: 'Área VIP'
     }
   ];
 
+  const estudiantesRecientes = [
+    {
+      id: 1,
+      nombre: 'Ana García',
+      nivel: 'Principiante',
+      progreso: 85,
+      ultimaClase: 'Ayer',
+      estado: 'activo'
+    },
+    {
+      id: 2,
+      nombre: 'Carlos Rodríguez',
+      nivel: 'Intermedio',
+      progreso: 72,
+      ultimaClase: 'Hoy',
+      estado: 'activo'
+    },
+    {
+      id: 3,
+      nombre: 'María López',
+      nivel: 'Avanzado',
+      progreso: 94,
+      ultimaClase: 'Ayer',
+      estado: 'activo'
+    },
+    {
+      id: 4,
+      nombre: 'Pedro Martínez',
+      nivel: 'Principiante',
+      progreso: 45,
+      ultimaClase: 'Hace 3 días',
+      estado: 'inactivo'
+    }
+  ];
+
+  const quickActions = [
+    {
+      id: 1,
+      title: 'Nueva Clase',
+      description: 'Crear una nueva clase',
+      icon: PlusIcon,
+      color: 'bg-[#019AA9]',
+      action: () => setShowNuevaClase(true)
+    },
+    {
+      id: 2,
+      title: 'Mi Perfil',
+      description: 'Actualizar información personal',
+      icon: UserIcon,
+      color: 'bg-blue-500',
+      action: () => setShowMiPerfil(true)
+    },
+    {
+      id: 3,
+      title: 'Mis Clases',
+      description: 'Gestionar horarios y clases',
+      icon: AcademicCapIcon,
+      color: 'bg-green-500',
+      action: () => setShowMisClases(true)
+    },
+    {
+      id: 4,
+      title: 'Estudiantes',
+      description: 'Ver progreso y gestionar estudiantes',
+      icon: UsersIcon,
+      color: 'bg-purple-500',
+      action: () => setShowEstudiantes(true)
+    },
+    {
+      id: 5,
+      title: 'Reportes',
+      description: 'Análisis y estadísticas',
+      icon: ChartBarIcon,
+      color: 'bg-orange-500',
+      action: () => setShowReportes(true)
+    }
+  ];
+
+  const getEstadoClaseColor = (estado: string) => {
+    switch (estado) {
+      case 'programada': return 'bg-blue-100 text-blue-800';
+      case 'en-curso': return 'bg-green-100 text-green-800';
+      case 'completada': return 'bg-gray-100 text-gray-800';
+      case 'cancelada': return 'bg-red-100 text-red-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getEstadoEstudianteColor = (estado: string) => {
+    return estado === 'activo' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Authenticated Navbar */}
       <AuthenticatedNavbar 
-        onNotificationsClick={() => setShowNotificaciones(true)}
-        notificationCount={5}
+        onNotificationsClick={() => setShowNotifications(true)}
+        notificationCount={3}
       />
-
-      {/* Main Content */}
-      <main className="container-custom py-8">
-        {/* Welcome Section */}
+      
+      <div className="container mx-auto px-4 py-8">
+        {/* Header de Bienvenida */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              ¡Bienvenido, Instructor {user.nombre}! 🎓
-            </h2>
-            <p className="text-gray-600">
-              Panel de control para instructores. Gestiona tus clases, estudiantes y revisa el progreso de tu trabajo.
-            </p>
-            <div className="mt-4 flex items-center space-x-4">
-              <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                Instructor
+          <div className="bg-gradient-to-r from-[#019AA9] to-[#018a95] rounded-xl p-6 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold mb-2">
+                  ¡Bienvenido, {user?.nombre}! 👨‍🏫
+                </h1>
+                <p className="text-cyan-100 text-lg">
+                  Panel de Instructor - Gestiona tus clases y estudiantes
+                </p>
               </div>
-              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                Especialidad: {user.especialidad || 'Patinaje General'}
+              <div className="hidden md:flex items-center space-x-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold">{instructorStats.clasesHoy}</div>
+                  <div className="text-sm text-cyan-100">Clases Hoy</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold">{instructorStats.totalEstudiantes}</div>
+                  <div className="text-sm text-cyan-100">Estudiantes</div>
+                </div>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Quick Stats */}
+        {/* Estadísticas Principales */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8"
+          transition={{ delay: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
         >
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center">
-              <div className="p-3 rounded-lg bg-blue-500 text-white">
-                <UsersIcon className="h-6 w-6" />
-              </div>
-              <div className="ml-4">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between">
+              <div>
                 <p className="text-sm font-medium text-gray-600">Estudiantes Activos</p>
-                <p className="text-2xl font-bold text-gray-900">28</p>
+                <p className="text-3xl font-bold text-gray-900">{instructorStats.estudiantesActivos}</p>
+                <p className="text-sm text-green-600 mt-1">+3 este mes</p>
+              </div>
+              <div className="p-3 bg-blue-100 rounded-lg">
+                <UsersIcon className="h-8 w-8 text-blue-600" />
               </div>
             </div>
           </div>
-          
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center">
-              <div className="p-3 rounded-lg bg-green-500 text-white">
-                <AcademicCapIcon className="h-6 w-6" />
+
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Horas Semanales</p>
+                <p className="text-3xl font-bold text-gray-900">{instructorStats.horasSemanales}</p>
+                <p className="text-sm text-blue-600 mt-1">85% capacidad</p>
               </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Clases Esta Semana</p>
-                <p className="text-2xl font-bold text-gray-900">15</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center">
-              <div className="p-3 rounded-lg bg-yellow-500 text-white">
-                <ClockIcon className="h-6 w-6" />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Horas Enseñadas</p>
-                <p className="text-2xl font-bold text-gray-900">120</p>
+              <div className="p-3 bg-green-100 rounded-lg">
+                <ClockIcon className="h-8 w-8 text-green-600" />
               </div>
             </div>
           </div>
-          
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center">
-              <div className="p-3 rounded-lg bg-purple-500 text-white">
-                <ChartBarIcon className="h-6 w-6" />
+
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Calificación</p>
+                <div className="flex items-center">
+                  <p className="text-3xl font-bold text-gray-900">{instructorStats.calificacionPromedio}</p>
+                  <StarIcon className="h-6 w-6 text-yellow-500 ml-1" />
+                </div>
+                <p className="text-sm text-yellow-600 mt-1">Excelente</p>
               </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Calificación Promedio</p>
-                <p className="text-2xl font-bold text-gray-900">4.8</p>
+              <div className="p-3 bg-yellow-100 rounded-lg">
+                <TrophyIcon className="h-8 w-8 text-yellow-600" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Clases Completadas</p>
+                <p className="text-3xl font-bold text-gray-900">{instructorStats.clasesCompletadas}</p>
+                <p className="text-sm text-purple-600 mt-1">Este año</p>
+              </div>
+              <div className="p-3 bg-purple-100 rounded-lg">
+                <AcademicCapIcon className="h-8 w-8 text-purple-600" />
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Próximas Clases */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="bg-white rounded-lg shadow-sm p-6 mb-8"
-        >
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-            <CalendarIcon className="h-5 w-5 mr-2 text-blue-500" />
-            Próximas Clases Hoy
-          </h3>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <div>
-                <p className="font-medium text-gray-900">Patinaje Básico - Grupo A</p>
-                <p className="text-sm text-gray-600">10:00 AM - 11:00 AM</p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Clases de Hoy */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="lg:col-span-2"
+          >
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-gray-900">Clases de Hoy</h2>
+                <button className="flex items-center text-blue-600 hover:text-blue-700 text-sm font-medium">
+                  <PlusIcon className="h-4 w-4 mr-1" />
+                  Nueva Clase
+                </button>
               </div>
-              <div className="text-sm text-blue-600 font-medium">8 estudiantes</div>
-            </div>
-            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <div>
-                <p className="font-medium text-gray-900">Patinaje Intermedio - Grupo B</p>
-                <p className="text-sm text-gray-600">2:00 PM - 3:30 PM</p>
+              
+              <div className="space-y-4">
+                {clasesHoy.map((clase) => (
+                  <motion.div
+                    key={clase.id}
+                    whileHover={{ scale: 1.02 }}
+                    className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-semibold text-gray-900">{clase.nombre}</h3>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoClaseColor(clase.estado)}`}>
+                            {clase.estado.charAt(0).toUpperCase() + clase.estado.slice(1)}
+                          </span>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600">
+                          <div className="flex items-center">
+                            <ClockIcon className="h-4 w-4 mr-1" />
+                            {clase.hora}
+                          </div>
+                          <div className="flex items-center">
+                            <UsersIcon className="h-4 w-4 mr-1" />
+                            {clase.estudiantes} estudiantes
+                          </div>
+                          <div className="flex items-center">
+                            <AcademicCapIcon className="h-4 w-4 mr-1" />
+                            {clase.nivel}
+                          </div>
+                          <div className="flex items-center">
+                            <CalendarIcon className="h-4 w-4 mr-1" />
+                            {clase.salon}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center space-x-2 ml-4">
+                        <button className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg">
+                          <EyeIcon className="h-4 w-4" />
+                        </button>
+                        {clase.estado === 'programada' && (
+                          <button className="px-3 py-1 bg-green-600 text-white text-xs rounded-lg hover:bg-green-700">
+                            Iniciar
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-              <div className="text-sm text-blue-600 font-medium">12 estudiantes</div>
             </div>
-            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <div>
-                <p className="font-medium text-gray-900">Patinaje Avanzado</p>
-                <p className="text-sm text-gray-600">4:00 PM - 5:30 PM</p>
-              </div>
-              <div className="text-sm text-blue-600 font-medium">6 estudiantes</div>
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
 
-        {/* Dashboard Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {instructorCards.map((card, index) => {
-            const IconComponent = card.icon;
-            return (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-                className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer group"
-                onClick={card.action}
-              >
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`p-3 rounded-lg ${card.color} text-white group-hover:scale-110 transition-transform`}>
-                      <IconComponent className="h-6 w-6" />
+          {/* Panel Lateral */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+            className="space-y-6"
+          >
+            {/* Acciones Rápidas */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">Acciones Rápidas</h2>
+              <div className="grid grid-cols-2 gap-3">
+                {quickActions.map((action) => (
+                  <motion.button
+                    key={action.id}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={action.action}
+                    className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all text-center"
+                  >
+                    <div className={`w-10 h-10 ${action.color} rounded-lg flex items-center justify-center mx-auto mb-2`}>
+                      <action.icon className="h-5 w-5 text-white" />
+                    </div>
+                    <h3 className="font-medium text-gray-900 text-sm">{action.title}</h3>
+                    <p className="text-xs text-gray-600 mt-1">{action.description}</p>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+
+            {/* Estudiantes Recientes */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-bold text-gray-900">Estudiantes Recientes</h2>
+                <button 
+                  onClick={() => setShowEstudiantes(true)}
+                  className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                >
+                  Ver todos
+                </button>
+              </div>
+              
+              <div className="space-y-3">
+                {estudiantesRecientes.map((estudiante) => (
+                  <div key={estudiante.id} className="flex items-center justify-between p-3 border border-gray-100 rounded-lg">
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-1">
+                        <h4 className="font-medium text-gray-900 text-sm">{estudiante.nombre}</h4>
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoEstudianteColor(estudiante.estado)}`}>
+                          {estudiante.estado}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-600">{estudiante.nivel} • {estudiante.ultimaClase}</p>
+                      <div className="mt-2">
+                        <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
+                          <span>Progreso</span>
+                          <span>{estudiante.progreso}%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div 
+                            className="bg-blue-600 h-1.5 rounded-full" 
+                            style={{ width: `${estudiante.progreso}%` }}
+                          ></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-blue transition-colors">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    {card.description}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </main>
-
-      {/* Notificaciones Modal */}
-      {showNotificaciones && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
-            <div className="flex items-center justify-between p-6 border-b">
-              <h2 className="text-2xl font-bold text-gray-900">Notificaciones</h2>
-              <button
-                onClick={() => setShowNotificaciones(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+                ))}
+              </div>
             </div>
-            <div className="overflow-y-auto max-h-[calc(90vh-120px)]">
-              <Notificaciones />
-            </div>
-          </div>
+          </motion.div>
         </div>
+      </div>
+
+      {/* Modales */}
+      {showNotifications && (
+        <Notificaciones 
+          isOpen={showNotifications} 
+          onClose={() => setShowNotifications(false)} 
+        />
       )}
-
-      {/* Modales Específicos */}
-      <MiPerfilModal 
-        isOpen={showMiPerfilModal} 
-        onClose={() => setShowMiPerfilModal(false)} 
-      />
-
-      <MisClasesModal 
-        isOpen={showMisClasesModal} 
-        onClose={() => setShowMisClasesModal(false)} 
-      />
-
-      <EstudiantesModal 
-        isOpen={showEstudiantesModal} 
-        onClose={() => setShowEstudiantesModal(false)} 
-      />
-
-      <ReportesModal 
-        isOpen={showReportesModal} 
-        onClose={() => setShowReportesModal(false)} 
-      />
+      
+      {showMiPerfil && (
+        <MiPerfilModal 
+          isOpen={showMiPerfil} 
+          onClose={() => setShowMiPerfil(false)} 
+        />
+      )}
+      
+      {showMisClases && (
+        <MisClasesModal 
+          isOpen={showMisClases} 
+          onClose={() => setShowMisClases(false)} 
+        />
+      )}
+      
+      {showEstudiantes && (
+        <EstudiantesModal 
+          isOpen={showEstudiantes} 
+          onClose={() => setShowEstudiantes(false)} 
+        />
+      )}
+      
+      {showReportes && (
+        <ReportesModal 
+          isOpen={showReportes} 
+          onClose={() => setShowReportes(false)} 
+        />
+      )}
+      
+      {showNuevaClase && (
+        <NuevaClaseModal 
+          isOpen={showNuevaClase} 
+          onClose={() => setShowNuevaClase(false)} 
+        />
+      )}
     </div>
   );
 };
