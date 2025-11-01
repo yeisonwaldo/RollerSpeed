@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components';
+import { useAuth } from '../contexts/AuthContext';
 import { 
   EyeIcon, 
   EyeSlashIcon,
@@ -15,7 +16,9 @@ const Login: React.FC = () => {
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { login, isLoading } = useAuth();
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,18 +30,25 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setError('');
     
-    // Simular llamada a API
-    setTimeout(() => {
-      console.log('Login attempt:', formData);
-      setIsLoading(false);
-      // Aquí iría la lógica de autenticación
-    }, 2000);
+    try {
+      const success = await login(formData.email, formData.password);
+      
+      if (success) {
+        // Redirigir según el rol del usuario
+        navigate('/dashboard');
+      } else {
+        setError('Credenciales incorrectas. Por favor, verifica tu email y contraseña.');
+      }
+    } catch (error) {
+      setError('Error al iniciar sesión. Por favor, intenta nuevamente.');
+      console.error('Login error:', error);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#019AA9] via-[#017a85] to-[#015a60] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-white via-[#B3E5E8] to-[#019AA9] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <motion.div
@@ -53,8 +63,8 @@ const Login: React.FC = () => {
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd"/>
             </svg>
           </div>
-          <h2 className="text-3xl font-bold text-white">Iniciar Sesión</h2>
-          <p className="mt-2 text-blue-100">
+          <h2 className="text-3xl font-bold text-black">INICIAR SESIÓN</h2>
+          <p className="mt-2 text-black-500">
             Accede a tu cuenta de ROLLER SPEED
           </p>
         </motion.div>
@@ -145,6 +155,13 @@ const Login: React.FC = () => {
               </Link>
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                <p className="text-sm text-red-600">{error}</p>
+              </div>
+            )}
+
             {/* Submit Button */}
             <Button
               type="submit"
@@ -223,8 +240,8 @@ const Login: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-center"
         >
-          <p className="text-blue-100 text-sm mb-4">Al iniciar sesión tendrás acceso a:</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-blue-200">
+          <p className="text-black-400 text-sm mb-4">Al iniciar sesión tendrás acceso a:</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-black-200">
             <div className="flex items-center justify-center">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>

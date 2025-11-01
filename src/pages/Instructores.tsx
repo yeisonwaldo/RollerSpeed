@@ -16,7 +16,7 @@ const Instructores: React.FC = () => {
       experiencia: "15 años",
       certificaciones: ["Instructor Certificado FIRS", "Entrenador Nacional"],
       descripcion: "Especialista en técnicas avanzadas de patinaje artístico y coreografía. Ha entrenado a múltiples campeones nacionales.",
-      imagen: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      imagen: "/src/assets/images/gallery/instructor1.jpg",
       logros: ["Campeón Nacional 2010-2012", "Instructor del Año 2020", "Más de 200 estudiantes entrenados"],
       rating: 5
     },
@@ -27,7 +27,7 @@ const Instructores: React.FC = () => {
       experiencia: "12 años",
       certificaciones: ["Entrenadora Olímpica", "Especialista en Velocidad"],
       descripcion: "Experta en técnicas de velocidad y resistencia. Enfoque en desarrollo de atletas de alto rendimiento.",
-      imagen: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
+      imagen: "/src/assets/images/gallery/instructor2.jpg",
       logros: ["Récord Nacional Juvenil", "Entrenadora Olímpica 2016", "Medalla de Oro Panamericanos"],
       rating: 5
     },
@@ -38,7 +38,7 @@ const Instructores: React.FC = () => {
       experiencia: "8 años",
       certificaciones: ["Instructor Básico Certificado", "Especialista en Niños"],
       descripcion: "Especializado en enseñanza para principiantes y niños. Metodología divertida y segura para todas las edades.",
-      imagen: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      imagen: "/src/assets/images/gallery/instructor3.jpg",
       logros: ["Instructor Favorito de Niños", "Más de 500 estudiantes principiantes", "Especialista en Seguridad"],
       rating: 5
     },
@@ -49,7 +49,7 @@ const Instructores: React.FC = () => {
       experiencia: "10 años",
       certificaciones: ["Instructora Freestyle Avanzada", "Juez Nacional"],
       descripcion: "Experta en trucos y acrobacias sobre patines. Enfoque en creatividad y expresión personal.",
-      imagen: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+      imagen: "/src/assets/images/gallery/instructor4.jpg",
       logros: ["Campeona Nacional Freestyle", "Creadora de 15 trucos únicos", "Influencer con 50k seguidores"],
       rating: 5
     }
@@ -77,9 +77,9 @@ const Instructores: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-blue-50">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+      <section className="relative py-20 bg-[#019AA9] text-white">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -130,7 +130,7 @@ const Instructores: React.FC = () => {
                   <img
                     src={instructor.imagen}
                     alt={instructor.nombre}
-                    className="w-full h-64 object-cover"
+                    className="w-full h-64 object-cover object-top"
                   />
                   <div className="absolute top-4 right-4 bg-white rounded-full px-3 py-1 flex items-center">
                     <StarIcon className="h-4 w-4 text-yellow-500 mr-1" />
@@ -191,7 +191,7 @@ const Instructores: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-indigo-600 to-blue-600 text-white">
+      <section className="py-16 bg-[#019AA9] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -216,7 +216,7 @@ const Instructores: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border-2 border-white hover:bg-white hover:text-indigo-600 font-bold py-3 px-8 rounded-lg transition-all duration-300"
+                className="border-2 border-white hover:bg-white hover:text-[#019AA9] font-bold py-3 px-8 rounded-lg transition-all duration-300"
               >
                 Más Información
               </motion.button>

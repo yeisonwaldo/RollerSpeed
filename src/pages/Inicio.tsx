@@ -276,7 +276,7 @@ const Inicio: React.FC = () => {
               </p>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-gray-500">📍 Pista Municipal</span>
-                <span className="text-sm font-medium text-teal-600">Competencia</span>
+                <span className="text-sm font-medium text-[#019AA9]">Competencia</span>
               </div>
             </motion.div>
 
@@ -313,7 +313,7 @@ const Inicio: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-teal-600">
+      <section className="py-20 px-4 bg-[#019AA9]">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

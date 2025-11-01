@@ -6,8 +6,11 @@ import {
   Instructores,
   Contacto, 
   Login, 
-  Registro 
+  Registro,
+  Dashboard,
+  MiPerfil
 } from './pages';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   const location = useLocation();
@@ -26,8 +29,9 @@ function App() {
   }, [location]);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Routes>
+    <AuthProvider>
+      <div className="min-h-screen flex flex-col">
+        <Routes>
         {/* Rutas con layout completo (Navbar + Footer) */}
         <Route path="/" element={
           <>
@@ -60,6 +64,10 @@ function App() {
         {/* Rutas de autenticación sin Navbar/Footer */}
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        
+        {/* Rutas de estudiante sin Navbar/Footer */}
+        <Route path="/mi-perfil" element={<MiPerfil />} />
         
         {/* Ruta 404 - Página no encontrada */}
         <Route path="*" element={
@@ -81,8 +89,9 @@ function App() {
             <Footer />
           </>
         } />
-      </Routes>
-    </div>
+        </Routes>
+      </div>
+    </AuthProvider>
   );
 }
 

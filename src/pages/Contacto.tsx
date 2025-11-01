@@ -76,7 +76,7 @@ const Contacto: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-blue to-blue-800 text-white section-padding">
+      <section className="bg-[#019AA9] text-white section-padding">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -131,7 +131,7 @@ const Contacto: React.FC = () => {
                         value={formData.nombre}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors"
                         placeholder="Tu nombre completo"
                       />
                     </div>
@@ -146,7 +146,7 @@ const Contacto: React.FC = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors"
                         placeholder="tu@email.com"
                       />
                     </div>
@@ -163,7 +163,7 @@ const Contacto: React.FC = () => {
                         name="telefono"
                         value={formData.telefono}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors"
                         placeholder="+57 (1) 234-5678"
                       />
                     </div>
@@ -177,7 +177,7 @@ const Contacto: React.FC = () => {
                         value={formData.asunto}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors"
                       >
                         <option value="">Selecciona un asunto</option>
                         <option value="informacion-general">Información General</option>
@@ -201,7 +201,7 @@ const Contacto: React.FC = () => {
                       onChange={handleInputChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-colors resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#019AA9] focus:border-transparent transition-colors resize-none"
                       placeholder="Escribe tu mensaje aquí..."
                     />
                   </div>
@@ -233,36 +233,18 @@ const Contacto: React.FC = () => {
                     className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
                   >
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary-blue rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-[#019AA9] rounded-lg flex items-center justify-center">
                         <item.icon className="w-6 h-6 text-white" />
                       </div>
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.title}</h3>
-                      <p className="text-primary-blue font-medium mb-1">{item.info}</p>
+                      <p className="text-[#019AA9] font-medium mb-1">{item.info}</p>
                       <p className="text-sm text-gray-600">{item.description}</p>
                     </div>
                   </motion.div>
                 ))}
               </div>
-
-              {/* Map Placeholder */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="mt-8"
-              >
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Nuestra Ubicación</h3>
-                <div className="w-full h-64 bg-gradient-to-br from-primary-blue to-blue-600 rounded-lg flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <MapPinIcon className="w-16 h-16 mx-auto mb-4" />
-                    <p className="text-lg font-semibold">Mapa Interactivo</p>
-                    <p className="text-sm opacity-90">Calle 123 #45-67, Bogotá</p>
-                  </div>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
         </div>

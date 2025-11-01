@@ -84,7 +84,7 @@ const Registro: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#019AA9] via-[#017a85] to-[#015a60] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-white via-[#B3E5E8] to-[#019AA9] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <motion.div
@@ -100,7 +100,7 @@ const Registro: React.FC = () => {
             </svg>
           </div>
           <h2 className="text-3xl font-bold text-white">Crear Cuenta</h2>
-          <p className="mt-2 text-blue-100">
+          <p className="mt-2 text-black-100">
             Únete a la familia ROLLER SPEED
           </p>
         </motion.div>
@@ -406,8 +406,8 @@ const Registro: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-8 text-center"
         >
-          <p className="text-blue-100 text-sm mb-4">Al registrarte obtienes:</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs text-blue-200">
+          <p className="text-black-100 text-sm mb-4">Al registrarte obtienes:</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs text-black-200">
             <div className="flex items-center justify-center">
               <CheckCircleIcon className="w-4 h-4 mr-2" />
               Clase de prueba gratis
